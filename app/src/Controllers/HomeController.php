@@ -10,8 +10,9 @@ final class HomeController extends Controller
 {
     public function get(Request $request, Response $response, $args)
     {
-        var_dump($_SERVER);
-        //$this->view->render($response, 'home.twig');
+        $this->view->render($response, 'home.twig',[
+            'pagetitle' => 'Accueil'
+        ]);
         return $response;
     }
 }
