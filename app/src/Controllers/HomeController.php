@@ -11,7 +11,8 @@ final class HomeController extends Controller
     public function get(Request $request, Response $response, $args)
     {
         $this->view->render($response, 'home.twig',[
-            'pagetitle' => 'Accueil'
+            'pagetitle' => 'Accueil',
+            'test' => [ 'ok' => 'ko' ]
         ]);
         return $response;
     }

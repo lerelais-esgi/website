@@ -24,6 +24,7 @@ $container['flash'] = function ($c) {
     return new Slim\Flash\Messages;
 };
 
+
 // -----------------------------------------------------------------------------
 // Service factories
 // -----------------------------------------------------------------------------
@@ -37,10 +38,20 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
+
+// -----------------------------------------------------------------------------
+// Errors handler
+// -----------------------------------------------------------------------------
+$container['notFoundHandler'] = function ($c) {
+    return function ($request, $response) use ($c) {
+        $c->view->render($response, '404.twig',[
+            'pagetitle' => 'Erreur 404'
+        ]);
+        return $response->withStatus(404);
+    };
+};
 // -----------------------------------------------------------------------------
 // Action factories
 // -----------------------------------------------------------------------------
 
-$container[App\Controllers\HomeController::class] = function ($c) {
-    return new App\Controllers\HomeController($c->get('view'), $c->get('logger'));
-};
+$container[App\Controllers\HomeController::class] = function ($c) {return new App\Controllers\HomeController($c);};
