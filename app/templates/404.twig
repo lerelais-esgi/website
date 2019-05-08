@@ -1,20 +1,23 @@
 {% extends "template.twig" %}
 
 {%  block body %}
-<!-- Begin Page Content -->
-<div class="container-fluid">
 
-    <!-- 404 Error Text -->
-    <div class="text-center">
-        <div class="error mx-auto" data-text="404">404</div>
-        <p class="lead text-gray-800 mb-5">Page non trouvé</p>
-        <p class="text-gray-500 mb-0">Il semblerait que vous ayez trouvé un trou noir !</p>
-        <a href="index.html">&larr; Retourner sur terre</a>
-    </div>
 
-</div>
-<!-- /.container-fluid -->
+    <section class="hero-banner d-flex align-items-center">
+        <div class="container text-center">
+            <div class="container-fluid">
 
-</div>
-<!-- End of Main Content -->
+                <!-- 404 Error Text -->
+                <div class="text-center">
+                    <div class="error mx-auto" data-text="404">404</div>
+                    <p class="lead text-gray-800 mb-5">La page n'a pas été trouvé</p>
+                    <p class="text-gray-500 mb-0">Vous avez apparemment trouvé un bug dans la matrice...</p>
+                    <a href="{{ path_for('home') }}">&larr; Retour à l'accueil</a>
+                </div>
+
+            </div>
+            <nav aria-label="breadcrumb" class="banner-breadcrumb"></nav>
+        </div>
+    </section>
+    <!--================Hero Banner Area End =================-->
 {%  endblock %}

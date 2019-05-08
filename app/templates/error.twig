@@ -1,0 +1,15 @@
+{% extends "template.twig" %}
+
+{%  block body %}
+
+    <!--================Service  Area =================-->
+    <section class="service-area area-padding">
+        <div class="container">
+            <div class="row text-center">
+                <h4 class="text-{{ errors.type }}">{{ errors.title }}</h4>
+                <h3 class="text-{{ errors.type }}">{{ errors.message }}</h3>
+            </div>
+        </div>
+    </section>
+    <!--================Service Area end =================-->
+{%  endblock %}

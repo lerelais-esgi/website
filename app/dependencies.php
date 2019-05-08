@@ -24,6 +24,17 @@ $container['flash'] = function ($c) {
     return new Slim\Flash\Messages;
 };
 
+$container['database'] = function ($c) {
+    try {
+        $pdo = new PDO("mysql:dbname=lerelais;host=localhost", 'finley', 'alinea141');//TODO:getenv('mysql_password')
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
+    }
+    catch (PDOException $e) {
+        $c->logger->error($e->getMessage());
+        die();
+    }
+};
 
 // -----------------------------------------------------------------------------
 // Service factories
@@ -38,7 +49,9 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
-
+$container['csrf'] = function ($c) {
+    return new \Slim\Csrf\Guard;
+};
 // -----------------------------------------------------------------------------
 // Errors handler
 // -----------------------------------------------------------------------------
@@ -50,8 +63,9 @@ $container['notFoundHandler'] = function ($c) {
         return $response->withStatus(404);
     };
 };
+
 // -----------------------------------------------------------------------------
-// Action factories
+// Configurations
 // -----------------------------------------------------------------------------
 
-$container[App\Controllers\HomeController::class] = function ($c) {return new App\Controllers\HomeController($c);};
+$container['debug'] = function ($c) { return true; };

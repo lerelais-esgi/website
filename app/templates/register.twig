@@ -1,0 +1,103 @@
+{% extends 'template.twig' %}
+
+{% block body %}
+<!--================Header Menu Area =================-->
+
+<section class="hero-banner d-flex align-items-center">
+    <div class="container text-center">
+        <h2>Créez votre compte dès maintenant</h2>
+        <nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                <li class="breadcrumb-item active" aria-current="page">S'inscrire</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!--================Hero Banner Area End =================-->
+
+<!--================Register Area =================-->
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 mb-5"  data-aos="fade">
+
+                <h2 class="mb-5 text-black">Enregistrement du compte</h2>
+                {% if errors %}
+                <h3 class="text-danger">{{ errors.message }}</h3>
+                {% endif %}
+                {% if errors.valide %}
+                    <h3 class="text-danger">{{ errors.valide }}</h3>
+                {% endif %}
+                <form action="{{ path_for('register') }}" class="p-5 bg-white" method="POST">
+                    {{ csrf() }}
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label class="{% if errors.email %} text-danger {% else %}text-black{% endif %}" for="email">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" {% if form.email %}value="{{ form.email }}"{% endif %}>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="{% if errors.password %} text-danger {% else %}text-black{% endif %}" for="subject">Mot de passe</label>
+                            <input type="password" name="password1" id="subject" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="{% if errors.password %} text-danger {% else %}text-black{% endif %}"for="subject">Confirmez le mot de passe</label>
+                            <input type="password" name="password2" id="subject" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="{% if errors.business %} text-danger {% else %}text-black{% endif %}" for="subject">Société</label>
+                            <input type="text" name="business" id="subject" class="form-control" {% if form.email %}value="{{ form.business }}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="{% if errors.lastname %} text-danger {% else %}text-black{% endif %}" for="subject">Nom</label>
+                            <input type="text" name="lastname" id="subject" class="form-control" {% if form.email %}value="{{ form.lastname }}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="{% if errors.firstname %} text-danger {% else %}text-black{% endif %}" for="subject">Prénom</label>
+                            <input type="text" name="firstname" id="subject" class="form-control" {% if form.email %}value="{{ form.firstname }}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="{% if errors.address %} text-danger {% else %}text-black{% endif %}"for="subject">Adresse</label>
+                            <textarea type="textarea" name="address" id="subject" class="form-control" {% if form.address %}value="{{ form.address }}"{% endif %}></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-12">
+                            <p>Vous avez déjà un compte?<a href="{{ path_for('login') }}"> <br> Se connecter</a></p>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="S'inscrire" class="btn btn-primary py-2 px-4 text-white">
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--================Register Area End =================-->
+
+{%  endblock %}

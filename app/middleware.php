@@ -1,4 +1,7 @@
 <?php
-// Application middleware
+$app->add(new App\Middlewares\TwigCSRFMiddleware($container->view->getEnvironment(), $container->csrf));
+$app->add($container->get('csrf'));
 
-// e.g: $app->add(new \Slim\Csrf\Guard);
+
+// Twig CSRF Miidleware
+

@@ -1,7 +1,31 @@
 <?php
 // Routes
 
-$app->get('/', App\Controllers\HomeController::class . ':get')
+$app->get('/', App\Controllers\PagesController::class . ':home')
     ->setName('home');
+$app->get('/services', App\Controllers\PagesController::class . ':services') //TODO: Frontend
+    ->setName('services');
+$app->get('/subscriptions', App\Controllers\PagesController::class . ':subscriptions') //TODO: Frontend
+    ->setName('subscriptions');
+
+
 $app->get('/login', App\Controllers\AccountController::class . ':get')
     ->setName('login');
+
+
+$app->get('/register', App\Controllers\RegisterController::class . ':get')
+    ->setName('register');
+$app->get('/register/[{token}]', App\Controllers\RegisterController::class . ':validate')
+    ->setName('register');
+
+$app->post('/register', App\Controllers\RegisterController::class . ':post')
+    ->setName('register');
+
+
+
+$app->get('/newsletter', App\Controllers\NewsletterController::class . ':infos')
+    ->setName('newsletter');
+$app->post('/newsletter', App\Controllers\NewsletterController::class . ':register')
+    ->setName('newsletter');
+$app->delete('/newsletter/[{email}]', App\Controllers\NewsletterController::class . ':delete')
+    ->setName('newsletter');
