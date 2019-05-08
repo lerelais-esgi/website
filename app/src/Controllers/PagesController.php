@@ -8,8 +8,10 @@
 
 namespace App\Controllers;
 
+use Slim\Http\Request;
+use Slim\Http\Response;
 
-class PagesController extends Controller
+final class PagesController extends Controller
 {
     public function home(Request $request, Response $response, $args)
     {
@@ -31,7 +33,7 @@ class PagesController extends Controller
     public function subscriptions(Request $request, Response $response, $args)
     {
         $this->view->render($response, 'subscriptions.twig',[
-            'pagetitle' => 'Nos Services #FightFoodWaste',
+            'pagetitle' => 'Nos forfaits #FightFoodWaste',
             'lang'  => $this->lang,
         ]);
         return $response;

@@ -9,9 +9,10 @@ $app->get('/subscriptions', App\Controllers\PagesController::class . ':subscript
     ->setName('subscriptions');
 
 
-$app->get('/login', App\Controllers\AccountController::class . ':get')
+$app->get('/login', App\Controllers\LoginController::class . ':get')
     ->setName('login');
-
+$app->post('/login', App\Controllers\LoginController::class . ':login')
+    ->setName('login');
 
 $app->get('/register', App\Controllers\RegisterController::class . ':get')
     ->setName('register');
