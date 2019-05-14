@@ -26,18 +26,31 @@ final class LoginController extends Controller
 
     public function login(Request $request, Response $response, $args)
     {
-        $r = $this->db->prepare('SELECT * FROM `users` WHERE email = :e');
-        $r->execute(['e' => $_POST['email']]);
-        $r = $r->fetch(\PDO::FETCH_LAZY);
-        if($this->decrypt($r['password']) === $_POST['password']) {
-            $this->_login($r, $response);
+        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $r = $this->db->prepare('SELECT * FROM `users` WHERE email = :e');
+            $r->execute(['e' => $_POST['email']]);
+            $r = $r->fetch(\PDO::FETCH_LAZY);
+            if ($this->decrypt($r['password']) === $_POST['password']) {
+                $this->_login($r, $response);
+            } else {
+                $errors['type'] = 'danger';
+                $errors['message'] = 'Mot de passe erroné';
+                $this->view->render($response, 'login.twig', [
+                    'csrf' => $this->csrf,
+                    'errors' => $errors,
+                    'form' => $_POST,
+                    'data' => $_SESSION,
+                    'pagetitle' => 'Le Relais - Connexion',
+                    'lang' => $this->lang
+                ]);
+            }
         } else {
-            $errors['type'] = 'danger';
-            $errors['message'] = 'Mot de passe erroné';
+            $errors['type'] = 'warning';
+            $errors['message'] = 'Email non valide';
             $this->view->render($response, 'login.twig', [
-                'csrf' =>   $this->csrf,
+                'csrf' => $this->csrf,
                 'errors' => $errors,
-                'form'  => $_POST,
+                'form' => $_POST,
                 'data' => $_SESSION,
                 'pagetitle' => 'Le Relais - Connexion',
                 'lang' => $this->lang

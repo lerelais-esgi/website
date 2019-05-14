@@ -26,7 +26,7 @@ $container['flash'] = function ($c) {
 
 $container['database'] = function ($c) {
     try {
-        $pdo = new PDO("mysql:dbname=lerelais;host=localhost", 'finley', '');//TODO:getenv('mysql_password')
+        $pdo = new PDO("mysql:dbname=lerelais;host=localhost", 'finley', 'alinea141');//TODO:getenv('mysql_password')
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }

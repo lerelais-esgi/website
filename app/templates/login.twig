@@ -1,4 +1,4 @@
-{% extends 'template.twig' %}
+{% extends "template.twig" %}
 
 {% block body %}
     {% if(data.logged) %}
@@ -33,7 +33,7 @@
                         {{  csrf() }}
                         <div class="row form-group">
                             {% if errors %}
-                                <h3 class="text-danger">{{ errors.message }}</h3>
+                                <h3 class="text-{{ errors.types }}">{{ errors.message }}</h3>
                             {% endif %}
                             <div class="col-md-12">
                                 <label class="{% if errors.type %} text-danger {% else %}text-black{% endif %}" for="email">Email</label>

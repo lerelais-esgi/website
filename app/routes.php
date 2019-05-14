@@ -10,14 +10,13 @@ $app->get('/subscriptions', App\Controllers\PagesController::class . ':subscript
 
 
 $app->get('/login', App\Controllers\LoginController::class . ':get')
-    ->setName('login');
+    ->setName('login_get');
 $app->post('/login', App\Controllers\LoginController::class . ':login')
     ->setName('login');
 
 $app->get('/register', App\Controllers\RegisterController::class . ':get')
-    ->setName('register');
-$app->get('/register/[{token}]', App\Controllers\RegisterController::class . ':validate')
-    ->setName('register');
+    ->setName('register_get');
+$app->get('/register/[{token}]', App\Controllers\RegisterController::class . ':validate');
 
 $app->post('/register', App\Controllers\RegisterController::class . ':post')
     ->setName('register');

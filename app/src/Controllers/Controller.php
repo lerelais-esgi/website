@@ -30,7 +30,7 @@ class Controller
         $this->db = $container['database'];
         $transport = (new \Swift_SmtpTransport('smtp.relight.xyz', 465, 'ssl'))
             ->setUsername('rkezal@relight.xyz')
-            ->setPassword(''); //TODO: .htsmtp
+            ->setPassword('Alinea141'); //TODO: .htsmtp
         $this->mail = new \Swift_Mailer($transport);
         if($container['debug'])
             $container['logger']->info("CLIENT : " . $_SERVER['REMOTE_ADDR'] . " requested ".$_SERVER['REQUEST_METHOD']." ".$_SERVER['REQUEST_URI']);
